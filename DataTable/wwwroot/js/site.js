@@ -37,17 +37,25 @@ window.onload = function () {
             data.forEach(data => {
                 TableRow += `
                 <tr>
-                    <td>${data.Name}</td>
+                    <td sid='${data.Id}' class='dataRow' style='cursor: pointer;'>${data.Name} ${data.Id}</td>
                     <td>${data.Email}</td>
                     <td>${data.Age}</td>
                 </tr>`;
             });
             $('#tableBody').append(TableRow);
+            var data_rows = document.getElementsByClassName("dataRow");
+
+            for (var i = 0; i < data_rows.length; i++) {
+                data_rows[i].addEventListener("click", function () {
+                    var data_id = this.getAttribute("sid");
+                    console.log(data_id);
+                });
+            }
         },
         error: function (error) {
             console.error('Error:', error);
         }
     });
-
     console.log("hello")
 };
+  
